@@ -1,0 +1,86 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="com.tushar.project1.controller.SMART"
+		
+	
+	height="100%">
+
+		<!-- use this to make the table occupy the available screen height -->
+		<VBox fitContainer="true">
+			<smartFilterBar:SmartFilterBar id="A_SalesOrderTypefilter" entitySet="A_SalesOrder" 
+			persistencyKey="SalesOrder"  
+			basicSearchFieldName="SalesOrder" enableBasicSearch="true" liveMode= "true" >
+					<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration visibleInAdvancedArea="true"  mandatory="mandatory" filterType="interval" key="SalesOrder" hasValueHelpDialog="true">
+					<smartFilterBar:defaultFilterValues>
+							<smartFilterBar:SelectOption operator="BT" high="100" low="1">
+							</smartFilterBar:SelectOption>
+						</smartFilterBar:defaultFilterValues>
+					</smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration visibleInAdvancedArea="true" mandatory="mandatory" filterType="single" key="SalesOrderType" hasValueHelpDialog="true" >
+						<smartFilterBar:defaultFilterValues>
+								<smartFilterBar:SelectOption operator="Contains" low="OR" >
+								</smartFilterBar:SelectOption>
+							</smartFilterBar:defaultFilterValues>
+						</smartFilterBar:ControlConfiguration>
+						<!-- <smartFilterBar:ControlConfiguration visibleInAdvancedArea="true" conditionType="{module: 'sap.m.DynamicDateRange'}" mandatory="mandatory" filterType="single" key="CreationDate" hasValueHelpDialog="true" >
+						<smartFilterBar:defaultFilterValues>
+								<smartFilterBar:SelectOption>
+								</smartFilterBar:SelectOption>
+							</smartFilterBar:defaultFilterValues>
+						</smartFilterBar:ControlConfiguration> -->
+				</smartFilterBar:controlConfiguration>
+				<!-- layout data used to make the table growing but the filter bar fixed -->
+				<smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData>
+			</smartFilterBar:SmartFilterBar>
+		
+			<smartTable:SmartTable  id="A_SalesOrderType" entitySet="A_SalesOrder" 
+			tableType ="ResponsiveTable" smartFilterId="A_SalesOrderTypefilter"  
+			useVariantManagement="true" useTablePersonalisation="true" header="SalesOrders" 
+			showRowCount="true" persistencyKey="SalesOrder" enableAutoBinding="true" class="sapUiResponsiveContentPadding" 
+			enableAutoColumnWidth="true" editTogglable="true" showFullScreenButton="true" app:useSmartToggle="true" initiallyVisibleFields="SalesOrder,SalesOrderType,SalesOrganization,DistributionChannel,OrganizationDivision">
+				
+	
+	<Table>
+			<columns>
+				<Column id="Kunnr" hAlign="Begin">
+					<customData>
+						<core:CustomData key="p13nData"
+										 value='\{"columnKey": "CreatedByUser",  "columnIndex": 6,  "width": "360px"}'/>
+					</customData>
+					<Text text="custom column 1" />
+				</Column>
+				<Column id="Dmbtr" hAlign="Begin">
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "PurchaseOrderByCustomer",  "columnIndex": 7,  "width": "360px"}'/>
+					</customData>
+					<Text text="custom column 2" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onItemPress">
+					<cells>
+						<Text text="{CreatedByUser}" />
+					</cells>
+					<cells>
+						<Text
+							text="{PurchaseOrderByCustomer}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</VBox>
+		</mvc:View>
