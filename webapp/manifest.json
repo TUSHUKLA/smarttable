@@ -98,7 +98,7 @@
                     "name": "RouteViewDetail",
                     "pattern": "A_SalesOrder/{id}",
                     "target": "DetailTarget"
-                  }
+                }
             ],
             "targets": {
                 "TargetSMART": {
@@ -109,9 +109,9 @@
                     "viewName": "SMART"
                 },
                 "DetailTarget": {
-                    "id": "Odetail",
-                    "name": "Detail"
-                  }
+                     "viewName": "Detail",
+                     "viewId": "Odetail"
+                }
             }
         },
         "rootView": {
