@@ -1,7 +1,10 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 		   xmlns="sap.uxap"
+		   	xmlns:c="sap.ui.core"
 		   xmlns:layout="sap.ui.layout"
 		   xmlns:m="sap.m"
+		  
+		
 		   controllerName="com.tushar.project1.controller.Detail"
 		   height="100%" id="Odetail">
 	<ObjectPageLayout id="ObjectPageLayout"
@@ -13,26 +16,26 @@
 			<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="Denise Smith" wrapping="true"/>
+					<m:Title text="SALES ORDER NO.: {S>/results/0/SalesOrder}" wrapping="true"/>
 				</expandedHeading>
 
 				<snappedHeading>
 					<m:FlexBox fitContainer="true" alignItems="Center">
 						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
-						<m:Title text="Denise Smith" wrapping="true" />
+						<m:Title text="SALES ORDER NO.: {S>/results/0/SalesOrder}" wrapping="true" />
 					</m:FlexBox>
 				</snappedHeading>
 
 				<expandedContent>
-					<m:Text text="Senior UI Developer"/>
+					<m:Text text="Sales Order Item :{S>/results/0/SalesOrderItem}"/>
 				</expandedContent>
 
 				<snappedContent>
-					<m:Text text="Senior UI Developer"/>
+					<m:Text text="Sales Order Item:{S>/results/0/SalesOrderItem}"/>
 				</snappedContent>
 
 				<snappedTitleOnMobile>
-					<m:Title text="Senior UI Developer"/>
+					<m:Title text="Sales Order Item :{S>/results/0/SalesOrderItem}"/>
 				</snappedTitleOnMobile>
 
 				<actions>
@@ -43,5 +46,52 @@
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
+		<sections>
+			<ObjectPageSection titleUppercase="false" id="goals" title="Items Table">
+			<subSections>
+				<m:Table 
+		inset="false"
+		mode="MultiSelect"
+		items="{
+			path: 'S>/results',
+			sorter: {
+				path: 'Name'
+			}
+		}">
+		<m:headerToolbar>
+			
+		</m:headerToolbar>
+		<m:columns>
+			<m:Column width="12em">
+				<m:Text text="Higher Level Item" />
+			</m:Column>
+			<m:Column minScreenWidth="Tablet" demandPopin="true">
+				<m:Text text="Sales Order Item Category" />
+			</m:Column>
+			<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+				<m:Text text="Sales Order Item Text" />
+			</m:Column>
+		</m:Columns>
+		<m:items>
+			<m:ColumnListItem vAlign="Middle">
+				<m:cells>
+					<m:ObjectIdentifier
+						title="{HigherLevelItem}"
+						text="{PurchaseOrderByCustomer}"/>
+					<m:Text
+						text="{SalesOrderItemCategory}" />
+					<m:Text
+						text="{SalesOrderItemText}" />
+				</m:cells>
+			</m:ColumnListItem>
+		</m:items>
+	</m:Table>
+	
+			
+			
+	
+					</subSections>
+			</ObjectPageSection>
+		</sections>
 	</ObjectPageLayout>
 </mvc:View>

@@ -54,14 +54,14 @@
 				<Column id="Kunnr" hAlign="Begin">
 					<customData>
 						<core:CustomData key="p13nData"
-										 value='\{"columnKey": "CreatedByUser",  "columnIndex": 6,  "width": "360px"}'/>
+										 value='\{"columnKey": "CreatedByUser", "autoColumnWidth": true,"leadingProperty": "CreatedByUser", "columnIndex": 6,  "width": "360px"}'/>
 					</customData>
 					<Text text="custom column 1" />
 				</Column>
 				<Column id="Dmbtr" hAlign="Begin">
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "PurchaseOrderByCustomer",  "columnIndex": 7,  "width": "360px"}'/>
+							value='\{"columnKey": "SoldToParty","autoColumnWidth": true,"leadingProperty": "SoldToParty",  "columnIndex": 7,  "width": "360px"}'/>
 					</customData>
 					<Text text="custom column 2" />
 				</Column>
@@ -69,11 +69,11 @@
 			<items>
 				<ColumnListItem type="Navigation" press="onItemPress">
 					<cells>
-						<Text text="{CreatedByUser}" />
+						<Input  value="{CreatedByUser}" />
 					</cells>
 					<cells>
-						<Text
-							text="{PurchaseOrderByCustomer}" />
+						<Input
+							value="{SoldToParty}" />
 					</cells>
 				</ColumnListItem>
 			</items>
