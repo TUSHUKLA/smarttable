@@ -1,97 +1,111 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc"
-		   xmlns="sap.uxap"
-		   	xmlns:c="sap.ui.core"
-		   xmlns:layout="sap.ui.layout"
-		   xmlns:m="sap.m"
-		  
-		
-		   controllerName="com.tushar.project1.controller.Detail"
-		   height="100%" id="Odetail">
-	<ObjectPageLayout id="ObjectPageLayout"
-		enableLazyLoading="true"
-		beforeNavigate="onBeforeNavigate"
-		useIconTabBar="true"
-		showTitleInHeaderContent="true"
-		upperCaseAnchorBar="false">
-			<headerTitle>
-			<ObjectPageDynamicHeaderTitle>
-				<expandedHeading>
-					<m:Title text="SALES ORDER NO.: {S>/results/0/SalesOrder}" wrapping="true"/>
-				</expandedHeading>
+<mvc:View
+		xmlns:c="sap.ui.core"
+		controllerName="com.tushar.project1.controller.Detail"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:u="sap.ui.unified"
+		xmlns="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:f="sap.f"
+		xmlns:layout="sap.ui.layout"
+		height="100%">
+		<f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="true" headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Sales Order No.:{S>/results/0/SalesOrder}"/>
+					</f:heading>
+					<f:expandedContent>
+						
+						<Label text="Sales Order Item No.:{S>/results/0/SalesOrderItem}"/>
+					</f:expandedContent>
+					<f:snappedContent>
+						
+						<Label text="Sales Order Item No.:{S>/results/0/SalesOrderItem}"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+						
+						<Title text="Sales Order Item No.:{S>/results/0/SalesOrderItem}"/>
+					</f:snappedTitleOnMobile>
+					
+					<f:actions>
+						<ToolbarSpacer/>
+						<Button
+								text="Edit"
+								type="Emphasized"/>
+						<Button
+								text="Delete"
+								type="Transparent"/>
+						<Button
+								text="Copy"
+								type="Transparent"/>
+						<Button
+								icon="sap-icon://action"
+								type="Transparent"/>
+					</f:actions>
+				</f:DynamicPageTitle>
+			</f:title>
 
-				<snappedHeading>
-					<m:FlexBox fitContainer="true" alignItems="Center">
-						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
-						<m:Title text="SALES ORDER NO.: {S>/results/0/SalesOrder}" wrapping="true" />
-					</m:FlexBox>
-				</snappedHeading>
-
-				<expandedContent>
-					<m:Text text="Sales Order Item :{S>/results/0/SalesOrderItem}"/>
-				</expandedContent>
-
-				<snappedContent>
-					<m:Text text="Sales Order Item:{S>/results/0/SalesOrderItem}"/>
-				</snappedContent>
-
-				<snappedTitleOnMobile>
-					<m:Title text="Sales Order Item :{S>/results/0/SalesOrderItem}"/>
-				</snappedTitleOnMobile>
-
-				<actions>
-					<m:Button text="Edit" type="Emphasized" press="onEdit"/>
-					<m:Button type="Transparent" text="Delete"/>
-					<m:Button type="Transparent" text="Copy"/>
-					<m:OverflowToolbarButton icon="sap-icon://action" type="Transparent" text="Share" tooltip="action"/>
-				</actions>
-			</ObjectPageDynamicHeaderTitle>
-		</headerTitle>
-		<sections>
-			<ObjectPageSection titleUppercase="false" id="goals" title="Items Table">
-			<subSections>
-				<m:Table 
-		inset="false"
-		mode="MultiSelect"
-		items="{
-			path: 'S>/results',
-			sorter: {
-				path: 'Name'
-			}
-		}">
-		<m:headerToolbar>
-			
-		</m:headerToolbar>
-		<m:columns>
-			<m:Column width="12em">
-				<m:Text text="Higher Level Item" />
-			</m:Column>
-			<m:Column minScreenWidth="Tablet" demandPopin="true">
-				<m:Text text="Sales Order Item Category" />
-			</m:Column>
-			<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-				<m:Text text="Sales Order Item Text" />
-			</m:Column>
-		</m:Columns>
-		<m:items>
-			<m:ColumnListItem vAlign="Middle">
-				<m:cells>
-					<m:ObjectIdentifier
-						title="{HigherLevelItem}"
-						text="{PurchaseOrderByCustomer}"/>
-					<m:Text
-						text="{SalesOrderItemCategory}" />
-					<m:Text
-						text="{SalesOrderItemText}" />
-				</m:cells>
-			</m:ColumnListItem>
-		</m:items>
-	</m:Table>
-	
 			
 			
-	
-					</subSections>
-			</ObjectPageSection>
-		</sections>
-	</ObjectPageLayout>
+
+			<f:content>
+				<t:Table
+						rows="{S>/results}"
+						selectionMode="MultiToggle"
+						rowMode="Auto">
+					<t:extension>
+						<OverflowToolbar style="Clear">
+							<Title text="Items"/>
+						</OverflowToolbar>
+					</t:extension>
+					<t:columns>
+						<t:Column width="11rem">
+							<Label text="Sales Order" />
+							<t:template>
+								<Text text="{S>SalesOrder}" wrapping="false" />
+							</t:template>
+						</t:Column>
+						<t:Column width="11rem">
+							<Label text="Sales Order Item" />
+							<t:template>
+								<Text text="{S>SalesOrderItem}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="6rem" hAlign="End">
+							<Label text="Higher Level Item" />
+							<t:template>
+								<Label text="{S>HigherLevelItem}" />
+							</t:template>
+						</t:Column>	
+						<t:Column width="6rem" hAlign="Right">
+							<Label text="Sales Order Item Category" />
+							<t:template>
+								<Label text="{S>SalesOrderItemCategory}" />
+							</t:template>
+						</t:Column>	
+						<t:Column width="6rem" hAlign="End">
+							<Label text="Sales Order Item Text" />
+							<t:template>
+								<Label text="{S>SalesOrderItemText}" />
+							</t:template>
+						</t:Column>	
+						<t:Column width="6rem" hAlign="End">
+							<Label text="Purchase Order By Customer" />
+							<t:template>
+								<Label text="{S>PurchaseOrderByCustomer}" />
+							</t:template>
+						</t:Column>	
+					</t:columns>
+				</t:Table>
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Accept"/>
+					<Button type="Reject" text="Reject"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
 </mvc:View>

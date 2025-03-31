@@ -41,7 +41,13 @@
 					<FlexItemData shrinkFactor="0"/>
 				</smartFilterBar:layoutData>
 			</smartFilterBar:SmartFilterBar>
+			<ScrollContainer
+		height="100%"
+		width="100%"
+		vertical="true"
+		focusable="true">
 		
+	
 			<smartTable:SmartTable  id="A_SalesOrderType" entitySet="A_SalesOrder" 
 			tableType ="ResponsiveTable" smartFilterId="A_SalesOrderTypefilter"  
 			useVariantManagement="true" useTablePersonalisation="true" header="SalesOrders" 
@@ -82,5 +88,7 @@
 					<FlexItemData growFactor="1" baseSize="0%"/>
 				</smartTable:layoutData>
 			</smartTable:SmartTable>
+		</ScrollContainer>
 		</VBox>
+		
 		</mvc:View>
